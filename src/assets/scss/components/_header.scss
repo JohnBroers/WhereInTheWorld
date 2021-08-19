@@ -1,0 +1,18 @@
+.header {
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: var(--element-background);
+	box-shadow: var(--default-box-shadow);
+    &__logo {
+        font-size: 1.2rem;
+        @include respond-above(sm) {
+            font-size: 1.5rem;
+        }
+    }
+    &__logo-link {
+        color: var(--text-color);
+        text-decoration: none;
+    }
+}

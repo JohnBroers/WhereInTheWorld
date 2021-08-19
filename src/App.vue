@@ -1,26 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+	<header class="header">
+		<router-link :to="{ name: 'Home' }" class="header__logo-link"><h1 class="header__logo">Where in the world?</h1></router-link>
+		<DarkModeToggle />
+	</header>
+	<main>
+		<router-view />
+	</main>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DarkModeToggle from '@/components/DarkModeToggle';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+	name: 'App',
+	components: {
+		DarkModeToggle
+	}
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+@import './assets/scss/style.scss';
 </style>

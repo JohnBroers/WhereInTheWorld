@@ -1,0 +1,64 @@
+.country-list {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	display: grid;
+	grid-template-columns: repeat(1, minmax(300px, 1fr));
+    @include respond-above(sm) {
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+    @include respond-above(lg) {
+        grid-template-columns: repeat(4, minmax(250px, 1fr));
+    }
+	grid-gap: 2rem;
+	align-items: center;
+	margin: 2rem;
+
+    &__item {
+        overflow: hidden;
+        background-color: var(--element-background);
+        border-radius: .25rem;
+        height: 100%;
+        box-shadow: var(--default-box-shadow);
+        &:hover {
+            img {
+                transform: scale(1.05);
+            }
+        }
+    }
+    &__link {
+        text-decoration: none;
+        display: block;
+        color: var(--text-color);
+    }
+    &__flag {
+        height: 180px;
+        line-height: 0;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .3s ease-in-out;
+            transform: scale(1);
+        }
+    }
+    &__flag-container {
+        align-self: flex-start;
+    }
+    &__innerwrapper {
+        padding: 2rem;
+    }
+    &__detail-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    &__detail-list-item {
+        padding: .125rem 0;
+    }
+    &__name {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+}

@@ -1,0 +1,30 @@
+.search {
+    background: var(--element-background);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: .25rem;
+    @include respond-above(sm) {
+        max-width: 400px;
+    }
+    &__label {
+        position: absolute;
+        padding-left: 1.5rem;
+    }
+    
+    &__field {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        padding: 1rem;
+        padding-left: 4rem;
+        flex-grow: 1;
+        box-shadow: var(--default-box-shadow);
+        &::-webkit-input-placeholder {
+            color:var(--text-color);
+        }
+        &::-moz-placeholder {
+            color:var(--text-color);
+        }
+    }
+}

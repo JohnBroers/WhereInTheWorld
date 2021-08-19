@@ -1,0 +1,17 @@
+.button {
+    appearance: none;
+    border: 0;
+    background-color: var(--element-background);
+    color: var(--text-color);
+    padding: .75rem 1.5rem;
+    border-radius: .25rem;
+    font-weight: 600;
+	cursor: pointer;
+	display: inline-flex;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+    &__icon {
+        margin-right: 1rem;
+    }
+}

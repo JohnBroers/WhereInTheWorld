@@ -1,0 +1,111 @@
+.country {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    @include respond-above(sm) {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__info-container,
+    &__flag-container {
+        width: 100%;
+        @include respond-above(sm) {
+            width: 50%;
+            margin: 0;
+        }
+    }
+
+    &__flag-container {
+        @include respond-above(sm) {
+            padding-right: 4rem;
+        }
+    }
+
+    &__info-container {
+        @include respond-above(sm) {
+            padding-left: 4rem;
+        }
+    }
+
+    &__flag-wrapper {
+        width: 100%;
+        line-height: 0;
+    }
+
+    &__flag {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    &__info-container {
+        margin: 2rem 0;
+    }
+
+    &__name {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &__info-row {
+        display: flex;
+        flex-direction: column;
+        @include respond-above(sm) {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__info-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        margin-bottom: 2rem;
+        @include respond-above(sm) {
+            margin-bottom: 0;
+            margin-right: 3rem;
+            width: 50%;
+        }
+    }
+
+    &__info-list-item {
+        padding: .25rem 0;
+    }
+
+    &__country-label {
+        margin-bottom: .5rem;
+    }
+
+    &__country-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &__country-list-item {
+        margin-bottom: .25rem;
+        margin-right: .25rem;
+    }
+
+    &__country-list-item-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .25rem 1rem;
+        background-color: var(--element-background);
+        color: var(--text-color);
+        border-radius: .25rem;
+        text-decoration: none;
+        color: var(--text-color);
+        box-shadow: var(--default-box-shadow);
+    }
+
+    &__navigation {
+        margin: 2rem;
+    }
+}
