@@ -24,10 +24,13 @@ export default {
             required: true
         }
     },
-    methods: {
-        toReadableNumber(num) {
+    setup() {
+        function toReadableNumber(num) {
             return Number(num).toLocaleString('nl-NL');
         }
-    }
+        return {
+            toReadableNumber
+        }
+    },
 }
 </script>

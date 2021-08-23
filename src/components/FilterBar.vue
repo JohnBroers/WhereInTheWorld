@@ -9,62 +9,68 @@
 </template>
 
 <script>
+import { ref, watch } from 'vue';
 import Dropdown from '@/components/Dropdown';
 import { debounce } from '@/helpers';
 
 export default {
+    emits: ['filterChange'],
     components: {
         Dropdown
     },
-    data() {
-        return {
-            search: '',
-            region: '',
-            dropdownOptions: [
-                {
-                    name: 'All',
-                    val: ''
-                },
-                {
-                    name: 'Africa',
-                    val: 'africa'
-                },
-                {
-                    name: 'Americas',
-                    val: 'americas'
-                },
-                {
-                    name: 'Asia',
-                    val: 'asia'
-                },
-                {
-                    name: 'Europe',
-                    val: 'europe'
-                },
-                {
-                    name: 'Oceania',
-                    val: 'oceania'
-                }
-            ]
+    setup(props, { emit }) {
+        const search = ref('');
+        const region = ref('');
+        const dropdownOptions = [
+            {
+                name: 'All',
+                val: ''
+            },
+            {
+                name: 'Africa',
+                val: 'africa'
+            },
+            {
+                name: 'Americas',
+                val: 'americas'
+            },
+            {
+                name: 'Asia',
+                val: 'asia'
+            },
+            {
+                name: 'Europe',
+                val: 'europe'
+            },
+            {
+                name: 'Oceania',
+                val: 'oceania'
+            }
+        ];
+
+        function optionSelected(val) {
+            region.value = val;
         }
-    },
-    watch: {
-        region(val) {
-            this.$emit('filterChange', {
+
+        watch(region, (currentValue) => {
+            emit('filterChange', {
                 type: 'region',
-                value: val
-            })
-        },
-        search: debounce(function (val) {
-            this.$emit('filterChange', {
+                value: currentValue
+            });
+        });
+
+        watch(search, debounce(function(currentValue) {
+            emit('filterChange', {
                 type: 'name',
-                value: val
-            })
-        }, 500)
-    },
-    methods: {
-        optionSelected(val) {
-            this.region = val;
+                value: currentValue
+            });
+        }, 500));
+
+        return {
+            search,
+            region,
+            dropdownOptions,
+            optionSelected
         }
     }
 }

@@ -10,7 +10,7 @@
             <div class="country__info-row">
                 <ul class="country__info-list">
                     <li class="country__info-list-item"><strong>Native name:</strong> {{ country.nativeName }}</li>
-                    <li class="country__info-list-item"><strong>Population:</strong> {{ country.population }}</li>
+                    <li class="country__info-list-item"><strong>Population:</strong> {{ toReadableNumber(country.population) }}</li>
                     <li class="country__info-list-item"><strong>Region:</strong> {{ country.region }}</li>
                     <li class="country__info-list-item"><strong>Sub region:</strong> {{ country.subregion }}</li>
                     <li class="country__info-list-item"><strong>Capital:</strong> {{ country.capital }}</li>
@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { ref, computed } from 'vue';
+
 export default {
     props: {
         country: {
@@ -41,24 +43,13 @@ export default {
             required: true
         }
     },
-    data() {
-        return {
-            borderCountries: null
-        }
-    },
-    computed: {
-        topLevelDomains() {
-            return this.country.topLevelDomain.join(', ');
-        },
-        currencies() {
-            return this.country.currencies.map(c => c.name).join(', ');
-        },
-        languages() {
-            return this.country.languages.map(l => l.name).join(', ');
-        }
-    },
-    methods: {
-        async getCountryByCode(code) {
+    setup(props) {
+        const borderCountries = ref(null);
+        const topLevelDomains = computed(() => props.country.topLevelDomain.join(', '));
+        const currencies = computed(() => props.country.currencies.map(c => c.name).join(', '));
+        const languages = computed(() => props.country.languages.map(l => l.name).join(', '));
+
+        async function getCountryByCode(code) {
             try {
                 const data = await fetch(`https://restcountries.eu/rest/v2/alpha/${code}`);
                 if (!data.ok) {
@@ -70,13 +61,27 @@ export default {
                 console.error(error);
             }
         }
-    },
-    async created() {
-        const countryNames = await Promise.all(this.country.borders.map(async countryCode => {
-            const country = await this.getCountryByCode(countryCode);
+
+        function toReadableNumber(num) {
+            return Number(num).toLocaleString('nl-NL');
+        }
+
+        Promise.all(props.country.borders.map(async countryCode => {
+            const country = await getCountryByCode(countryCode);
             return country.name;
-        }));
-        this.borderCountries = countryNames;
+        }))
+        .then(countries => {
+            borderCountries.value = countries
+        });
+
+        return {
+            borderCountries,
+            topLevelDomains,
+            currencies,
+            languages,
+            toReadableNumber
+        }
+        
     }
 }
 </script>

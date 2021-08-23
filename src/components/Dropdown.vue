@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
     props: {
         options: {
@@ -25,39 +27,48 @@ export default {
             default: null
         }
     },
-    data() {
-        return {
-            isOpen: false,
-            selected: null
+    emits: ['selected'],
+    setup(props, { emit }) {
+        const isOpen = ref(false);
+        const selected = ref(null);
+
+        function open() {
+            isOpen.value = true;
         }
-    },
-    mounted() {
-        if(this.default) {
-            const defaultOption = this.options.find(o => o.val === this.default);
+
+        function close() {
+            isOpen.value = false;
+        }
+
+        function toggle() {
+            if(!isOpen.value) {
+                open();
+            } else {
+                close();
+            }
+        }
+
+        function select(option) {
+            selected.value = option;
+            close();
+            emit('selected', option.val);
+        }
+
+        if(props.default) {
+            const defaultOption = props.options.find(o => o.val === props.default);
             if(!defaultOption) {
                 return;
             }
             this.select(defaultOption);
         }
-    },
-    methods: {
-        open() {
-            this.isOpen = true;
-        },
-        close() {
-            this.isOpen = false;
-        },
-        toggle() {
-            if(!this.isOpen) {
-                this.open();
-            } else {
-                this.close();
-            }
-        },
-        select(option) {
-            this.selected = option;
-            this.close();
-            this.$emit('selected', option.val);
+
+        return {
+            isOpen,
+            selected,
+            open,
+            close,
+            toggle,
+            select
         }
     }
 }

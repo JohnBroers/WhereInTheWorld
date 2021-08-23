@@ -12,34 +12,42 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
-    data() {
-        return {
-            theme: 'light-theme',
+    setup() {
+        const theme = ref('light-theme');
+
+        function enableMode(mode) {
+            theme.value = mode;
+            document.documentElement.className = mode;
+            localStorage.setItem('user-theme', mode);
         }
-    },
-    methods: {
-        enableTheme(theme) {
-            this.theme = theme;
-            document.documentElement.className = theme;
-            localStorage.setItem('user-theme', theme);
-        },
-        toggleMode() {
-            if(this.theme === 'light-theme') {
-                this.enableTheme('dark-theme');
+
+        function toggleMode() {
+            if(theme.value === 'light-theme') {
+                enableMode('dark-theme');
             } else {
-                this.enableTheme('light-theme');
+                enableMode('light-theme');
             }
         }
-    },
-    mounted() {
-        const activeTheme = localStorage.getItem("user-theme");
+
+        const activeMode = localStorage.getItem("user-theme");
         const hasDarkThemePreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        if(activeTheme) {
-            this.enableTheme(activeTheme);
-            return;
+
+        if(activeMode) {
+            enableMode(activeMode);
+        } else {
+            if(hasDarkThemePreference) {
+                enableMode('dark-theme');
+            }
         }
-        this.theme = hasDarkThemePreference ? this.enableTheme('dark-theme') : this.enableTheme('light-theme'); 
+
+        return {
+            theme, 
+            toggleMode
+        }
+
     }
 }
 </script>
