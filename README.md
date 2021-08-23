@@ -1,24 +1,54 @@
-# whereintheworld
+# REST Countries API with color theme switcher solution
 
-## Project setup
-```
-yarn install
-```
+This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Table of contents
 
-### Compiles and minifies for production
-```
-yarn build
-```
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+- [Author](#author)
 
-### Lints and fixes files
-```
-yarn lint
-```
+## Overview
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### The challenge
+
+Users should be able to:
+
+- See all countries from the API on the homepage
+- Search for a country using an `input` field
+- Filter countries by region
+- Click on a country to see more detailed information on a separate page
+- Click through to the border countries on the detail page
+- Toggle the color scheme between light and dark mode
+
+### Screenshot
+
+![Home dark](./screenshots/home-dark.png)
+![Detail dark](./screenshots/detail.png)
+
+### Links
+
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS variables
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [Vue 3](https://vuejs.org/) - JS library
+- [Vue Router](https://router.vuejs.org/) - JS library
+
+
+## Author
+
+- Website - [John Broers](https://johnbroers.nl)
+- Frontend Mentor - [@JohnBroers](https://www.frontendmentor.io/profile/JohnBroers)
+- Twitter - [@johnbroerss](https://twitter.com/johnbroerss)
