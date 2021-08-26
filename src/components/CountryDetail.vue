@@ -22,7 +22,7 @@
                 </ul>
             </div>
             <div v-if="borderCountries && borderCountries.length">
-                <p class="country__country-label"><strong>Border counties:</strong></p>
+                <p class="country__country-label"><strong>Border countries:</strong></p>
                 <ul class="country__country-list">
                     <li v-for="country in borderCountries" :key="country" class="country__country-list-item">
                         <router-link :to="{ name: 'CountryDetail', params: { name: country }}" class="country__country-list-item-link">{{ country }}</router-link>
