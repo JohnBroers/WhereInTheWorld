@@ -7,8 +7,20 @@
 	box-shadow: var(--default-box-shadow);
     &__logo {
         font-size: 1.2rem;
+        position: relative;
+        z-index: 1;
         @include respond-above(sm) {
             font-size: 1.5rem;
+        }
+        &:before {
+            content: '';
+            width: 80px;
+            height: 5px;
+            background-color: rgba(18, 141, 211, 0.75);
+            position: absolute;
+            bottom: 2px;
+            right: 0;
+            z-index: -1;
         }
     }
     &__logo-link {

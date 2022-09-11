@@ -23,18 +23,19 @@ export default {
 
         function fetchCountriesByType({ type, value }) {
             if(type === 'region' && value !== '') {
-                fetchCountries(`https://restcountries.eu/rest/v2/region/${value}`);
+                fetchCountries(`https://restcountries.com/v3.1/region/${value}`);
             } else if(type === 'name' && value !== '') {
-                fetchCountries(`https://restcountries.eu/rest/v2/name/${value}`);
+                fetchCountries(`https://restcountries.com/v3.1/name/${value}`);
             } else {
-                fetchCountries('https://restcountries.eu/rest/v2/all');
+                fetchCountries('https://restcountries.com/v3.1/all');
             }
         }
 
         async function fetchCountries(api) {
             try {
                 loading.value = true;
-                const result = await fetch(api);
+                let url = api + '?fields=cca3,flags,name,population,region,capital';
+                const result = await fetch(url);
                 if (!result.ok) {
                     throw new Error("Not 2xx response")
                 }
@@ -49,7 +50,7 @@ export default {
             }
         }
 
-        fetchCountries('https://restcountries.eu/rest/v2/all');
+        fetchCountries('https://restcountries.com/v3.1/all');
 
         return {
             loading,

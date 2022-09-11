@@ -32,7 +32,8 @@ export default {
         async function getCurrentCountry(name) {
             try {
                 loading.value = true;
-                const result = await fetch(`https://restcountries.eu/rest/v2/name/${name}?fullText=true`);
+
+                const result = await fetch(`https://restcountries.com/v3.1/name/${name}?fullText=true&fields=flag,flags,name,population,region,subregion,capital,tld,currencies,languages,borders,maps`);
                 if (!result.ok) {
                     throw new Error("Not 2xx response")
                 }

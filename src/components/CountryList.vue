@@ -1,6 +1,6 @@
 <template>
     <ul class="country-list">
-        <CountryListItem v-for="country in countries" :country="country" :key="country.numericCode" />
+        <CountryListItem v-for="country in countries" :country="country" :key="country.cca3" />
     </ul>
 </template>
 

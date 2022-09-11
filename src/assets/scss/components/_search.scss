@@ -21,11 +21,18 @@
         flex-grow: 1;
         box-shadow: var(--default-box-shadow);
         color: var(--text-color);
+        border-radius: 0.25rem;
         &::-webkit-input-placeholder {
             color:var(--text-color);
         }
         &::-moz-placeholder {
             color:var(--text-color);
+        }
+        &:focus,
+        &:focus-visible,
+        &:focus-within {
+            outline: 0;
+            box-shadow: 0 0 0 2px rgba(18, 141, 211, 0.75);
         }
     }
 }
